@@ -181,3 +181,5 @@ instance/
 # Environment variables
 .env
 
+# config file
+config.py
