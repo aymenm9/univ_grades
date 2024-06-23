@@ -1,21 +1,36 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, relationship, JSON
 from db import db
-class Admin(db.Model):
+from login_manager import UserMixin
+
+def get_id(user_obj):
+    '''
+    return user_id and user_type
+    user_type: Admin, Teacher, Student class or none
+    '''
+    if user_obj is None:
+        return None
+    user = {'user_id': user_obj.id,
+            'usr_type': user_obj.__class__}
+    return user
+class Admin(db.Model, UserMixin):
     __tablename__ = 'admin'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    username = Column(String(50), nullable=False)
+    username = Column(String(50), nullable=False, unique=True)
     password = Column(String(255), nullable=False)
 
     def __repr__(self):
         return f"<Admin(id={self.id}, username='{self.username}')>"
+    
+    def get_id(self):
+        return get_id(self)
 
 
 class Department(db.Model):
     __tablename__ = 'department'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String(255), nullable=False)
+    name = Column(String(255), nullable=False, unique=True)
 
     levels = relationship("Level", backref="department")  # One department has many levels
 
@@ -44,29 +59,32 @@ class Class(db.Model):
     )  # One class has many teacher-subject relationships
 
 
-class Teacher(db.Model):
+class Teacher(db.Model, UserMixin):
     __tablename__ = 'teacher'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    username = Column(String(50), nullable=False)
+    username = Column(String(50), nullable=False, unique=True)
     password = Column(String(255), nullable=False)
 
     teachers_subjects = relationship(
         "TeacherClassSubject", backref="teacher"
     )  # One teacher has many teacher-subject relationships
+    def get_id(self):
+        return get_id(self)
 
-
-class Student(db.Model):
+class Student(db.Model, UserMixin):
     __tablename__ = 'student'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    username = Column(String(50), nullable=False)
+    username = Column(String(50), nullable=False, unique=True)
     password = Column(String(255), nullable=False)
     full_name = Column(String(50))
     class_id = Column(Integer, ForeignKey('class.id'))
 
     grades = relationship("Grade", backref="student")  # One student has many grades
 
+    def get_id(self):
+        return get_id(self)
 
 class Subject(db.Model):
     __tablename__ = 'subject'
