@@ -39,9 +39,10 @@ CREATE TABLE IF NOT EXISTS student(
     username VARCHAR(50) NOT NULL,
     password VARCHAR(255) NOT NULL,
     full_name VARCHAR(50),
-    class INT ,
+    class_id INT , -- edited to class_id
     FOREIGN KEY(class) REFERENCES class(id)
 );
+
 
 CREATE TABLE IF NOT EXISTS subject(
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -108,3 +109,9 @@ INSERT INTO class(class_number, level_id) VALUES (1, 3);
 INSERT INTO class(class_number, level_id) VALUES (2, 3);
 INSERT INTO class(class_number, level_id) VALUES (3, 3);
 
+
+
+--@block
+-- edit class to class_id in student tabel
+
+ALTER TABLE student RENAME COLUMN class TO class_id;
