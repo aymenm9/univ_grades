@@ -2,7 +2,7 @@ from flask import Flask, session, render_template, redirect, request, url_for
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from config import config
-from login_manager import login_manager
+from login_manager import login_manager , logout_user
 from db import db
 from models import *
 from flask_bootstrap import Bootstrap
@@ -50,7 +50,8 @@ def login():
 
 @app.route("/logout")
 def logout():
-    session.pop("username", None)
+    logout_user()
+    session.clear()
     return redirect("/")
 
 @app.route("/", methods=["GET", "POST"])

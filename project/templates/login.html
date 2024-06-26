@@ -1,5 +1,5 @@
 
-<form action="/login" method="post">
+<form action="/login{% if user_type %}/{{user_type}}{% endif %}" method="post">
     <div class="form-group mb-3">
         {{ form.username.label}}
         {{ form.username }}
