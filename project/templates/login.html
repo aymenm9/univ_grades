@@ -1,0 +1,26 @@
+
+<form action="/login" method="post">
+    <div class="form-group mb-3">
+        {{ form.username.label}}
+        {{ form.username }}
+        {% if error %}
+            {% if error.username %}
+                <div class=" form-text text-danger">
+                    <p>username dosn't exist</p>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+    <div class="form-group mb-3">
+        {{ form.password.label}}
+        {{ form.password}}
+        {% if error %}
+            {% if error.password %}
+                <div class=" form-text text-danger">
+                    <p>password is wrong</p>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+    {{ form.submit }}
+</form>

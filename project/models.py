@@ -1,4 +1,5 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, relationship, JSON
+from sqlalchemy import Column, Integer, String, ForeignKey, JSON
+from sqlalchemy.orm import relationship
 from db import db
 from login_manager import UserMixin
 
@@ -111,3 +112,14 @@ class TeacherClassSubject(db.Model):
     teacher_id = Column(Integer, ForeignKey('teacher.id'), primary_key=True)
     class_id = Column(Integer, ForeignKey('class.id'), primary_key=True)
     subject_id = Column(Integer, ForeignKey('subject.id'), primary_key=True)
+
+class Grade(db.Model):
+    __tablename__ = 'grade'
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    grade = Column(float)
+    exam = Column(float)
+    tp = Column(float)
+    td = Column(float)
+    student_id = Column(Integer, ForeignKey('student.id'))
+    subject_id = Column(Integer, ForeignKey('subject.id'))
