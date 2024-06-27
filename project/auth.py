@@ -1,5 +1,5 @@
-from db import db
-from login_manager import login_manager, login_user
+from .db import db
+from .login_manager import login_manager, login_user
 from werkzeug.security import check_password_hash, generate_password_hash 
 from flask import session
 

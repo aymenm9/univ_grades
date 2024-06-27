@@ -1,5 +1,5 @@
 
-<form action="/login{% if user_type %}/{{user_type}}{% endif %}" method="post">
+<form action="{% if user_type %}/{{user_type}}{% else %}/student{% endif %}/login" method="post">
     <div class="form-group mb-3">
         {{ form.username.label}}
         {{ form.username }}

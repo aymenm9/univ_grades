@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, Float,ForeignKey, JSON
 
-from db import db
-from login_manager import UserMixin
+from .db import db
+from .login_manager import UserMixin
 
 def get_id(user_obj):
     '''

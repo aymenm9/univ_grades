@@ -1,6 +1,6 @@
 from flask_login import UserMixin, login_user, logout_user, LoginManager
-from db import db
-from models import Admin, Teacher, Student
+from .db import db
+from .models import Admin, Teacher, Student
 
 login_manager = LoginManager()
 
