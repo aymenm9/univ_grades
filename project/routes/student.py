@@ -1,10 +1,10 @@
 from flask import  session, render_template, redirect, request, url_for, Blueprint
 from flask_session import Session
-from project.login_manager import login_manager
-from project.auth import login_user
-from project.db import db
-from project.models import Student
-from project.forms import StudentLoginForm
+from project import login_manager
+from project import login_user
+from project import db
+from project import Student
+from project import StudentLoginForm
 
 
 student_bp = Blueprint('student', __name__,url_prefix="/student")
