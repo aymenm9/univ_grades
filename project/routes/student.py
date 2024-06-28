@@ -4,7 +4,7 @@ from project import login_manager
 from project import login_user
 from project import db
 from project import Student
-from project import StudentLoginForm
+from project import LoginForm
 
 
 student_bp = Blueprint('student', __name__,url_prefix="/student")
@@ -17,14 +17,14 @@ def student():
 
 @student_bp.route("/login", methods=["GET", "POST"])
 def login():
-    form = StudentLoginForm()
+    form = LoginForm()
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
         error = login_user(username, password, Student)
         if error['error']:
-            return render_template("login.html",form = form, error=error)
-        return redirect(url_for("index"))
+            return render_template("login.html", user_type="student",form = form, error=error)
+        return redirect(url_for('index.index'))
     else:
         error = {'error': None, 'username': None, 'password': None}
-        return render_template("login.html",form = form)
+        return render_template("login.html",user_type="student",form = form)

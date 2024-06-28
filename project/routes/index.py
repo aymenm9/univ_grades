@@ -6,9 +6,6 @@ from project.login_manager import login_manager, logout_user
 index_bp = Blueprint('index', __name__, url_prefix="/")
 
 
-
-
-
 @index_bp.route("/logout")
 def logout():
     logout_user()

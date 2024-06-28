@@ -1,13 +1,10 @@
-from flask import Flask, session, render_template, redirect, request, url_for
+from flask import Flask, session
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from .config import config
-from .login_manager import login_manager , logout_user
+from .login_manager import login_manager
 from .db import db
-from .models import *
 from flask_bootstrap import Bootstrap
-from .auth import login_user
-from .forms import StudentLoginForm
 from .routes import routes_bp
 app = Flask(__name__)
 

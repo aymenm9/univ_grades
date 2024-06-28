@@ -4,4 +4,4 @@ from .auth import *
 from .models import *
 from .forms import *
 
-__all__ = ['db', 'login_manager', 'auth', 'logout_user', 'StudentLoginForm', 'models']
+__all__ = ['db', 'login_manager', 'auth', 'logout_user', 'LoginForm', 'models']
