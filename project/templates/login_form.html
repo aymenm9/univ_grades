@@ -1,0 +1,38 @@
+{% extends "login.html" %}
+
+
+{% block main %}
+<div class="row justify-content-center my-5 mx-0">
+    <div class="col-10 col-md-6 card p-3">
+        <form action="/{{user_type}}/login" method="post">
+            <div class="form-group mb-3">
+                {{ form.username.label}}
+                {{ form.username }}
+                {% if error %}
+                    {% if error.username %}
+                        <div class=" form-text text-danger">
+                            <p>username dosn't exist</p>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="form-group mb-3">
+                {{ form.password.label}}
+                {{ form.password}}
+                {% if error %}
+                    {% if error.password %}
+                        <div class=" form-text text-danger">
+                            <p>password is wrong</p>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="justify-content-center">
+                {{ form.submit }}
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+{% endblock %}

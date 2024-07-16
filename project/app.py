@@ -6,6 +6,7 @@ from .login_manager import login_manager
 from .db import db
 from flask_bootstrap import Bootstrap
 from .routes import routes_bp
+from .apology import apology
 app = Flask(__name__)
 
 # db config
@@ -32,6 +33,12 @@ Bootstrap(app)
 # import routes
 
 app.register_blueprint(routes_bp)
+
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return apology("page not found", 404)
 
 
 if __name__ == '__main__':

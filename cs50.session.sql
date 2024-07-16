@@ -115,3 +115,12 @@ INSERT INTO class(class_number, level_id) VALUES (3, 3);
 -- edit class to class_id in student tabel
 
 ALTER TABLE student RENAME COLUMN class TO class_id;
+
+
+
+
+--@block
+SELECT * FROM admin;
+
+--@block
+DELETE FROM admin;

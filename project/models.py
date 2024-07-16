@@ -1,21 +1,11 @@
 from sqlalchemy import Column, Integer, String, Float,ForeignKey, JSON
-
 from .db import db
 from .login_manager import UserMixin
+from .model_utils import get_id
 
-def get_id(user_obj):
-    '''
-    return user_id and user_type
-    user_type: Admin, Teacher, Student class or none
-    '''
-    if user_obj is None:
-        return None
-    user = {'user_id': user_obj.id,
-            'usr_type': user_obj.__class__}
-    return user
 class Admin(db.Model, UserMixin):
     __tablename__ = 'admin'
-
+    __name__ = 'admin'
     id = Column(Integer, primary_key=True, autoincrement=True)
     username = Column(String(50), nullable=False, unique=True)
     password = Column(String(255), nullable=False)
@@ -52,7 +42,7 @@ class Class(db.Model):
 
 class Teacher(db.Model, UserMixin):
     __tablename__ = 'teacher'
-
+    __name__ = 'teacher'
     id = Column(Integer, primary_key=True, autoincrement=True)
     username = Column(String(50), nullable=False, unique=True)
     password = Column(String(255), nullable=False)
@@ -61,7 +51,7 @@ class Teacher(db.Model, UserMixin):
 
 class Student(db.Model, UserMixin):
     __tablename__ = 'student'
-
+    __name__ = 'student'
     id = Column(Integer, primary_key=True, autoincrement=True)
     username = Column(String(50), nullable=False, unique=True)
     password = Column(String(255), nullable=False)
